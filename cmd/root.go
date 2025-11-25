@@ -18,6 +18,7 @@ var outputFile string
 
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&outputFile, "output", "o", "", "Write output to file instead of stdout")
+	rootCmd.Flags().IntVarP(&startPriority, "start-priority", "p", 0, "Output N blank lines before tracker groups (default: 0)")
 }
 
 // Execute runs the root command

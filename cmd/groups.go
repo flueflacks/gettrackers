@@ -20,11 +20,19 @@ var groupsCmd = &cobra.Command{
 	RunE:  runGroups,
 }
 
+var startPriority int
+
 func init() {
 	rootCmd.AddCommand(groupsCmd)
+	groupsCmd.Flags().IntVarP(&startPriority, "start-priority", "p", 0, "Output N blank lines before tracker groups (default: 0)")
 }
 
 func runGroups(cmd *cobra.Command, args []string) error {
+	// Validate start-priority flag
+	if startPriority < 0 {
+		return fmt.Errorf("start-priority must be a non-negative integer, got: %d", startPriority)
+	}
+
 	// Load config
 	cfg, err := config.Load()
 	if err != nil {
@@ -81,8 +89,22 @@ func runGroups(cmd *cobra.Command, args []string) error {
 		}
 	}()
 
+	// Output blank lines for start-priority
+	if err := outputStartPriority(writer, startPriority); err != nil {
+		return err
+	}
+
 	// Output groups
 	return outputGroups(writer, groups)
+}
+
+func outputStartPriority(writer io.Writer, count int) error {
+	for i := 0; i < count; i++ {
+		if _, err := fmt.Fprintln(writer); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func outputGroups(writer io.Writer, groups []group.Group) error {
