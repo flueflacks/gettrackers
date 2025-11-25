@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"gettrackers/internal/fetch"
 	"gettrackers/internal/filter"
+	"gettrackers/internal/paths"
 
 	"github.com/spf13/cobra"
 )
@@ -35,15 +35,22 @@ func init() {
 }
 
 func runShowSources(cmd *cobra.Command, args []string) error {
-	urls, err := fetch.LoadCache()
+	// Read and output the raw cache file content (unfiltered)
+	cacheFile, err := paths.GetCacheFile()
 	if err != nil {
-		return fmt.Errorf("failed to load cache: %w", err)
+		return fmt.Errorf("failed to get cache file path: %w", err)
 	}
 
-	for _, url := range urls {
-		fmt.Println(url)
+	data, err := os.ReadFile(cacheFile)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return fmt.Errorf("cache file does not exist")
+		}
+		return fmt.Errorf("failed to read cache file: %w", err)
 	}
 
+	// Output the raw cache file content
+	fmt.Print(string(data))
 	return nil
 }
 
