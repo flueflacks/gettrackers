@@ -17,6 +17,13 @@ go install github.com/flueflacks/gettrackers@latest
 ## Usage
 
 ```
+> gettrackers | pbcopy  # macos
+> gettrackers | xclip -selection clipboard  # linux 
+... 
+```
+
+
+```
 > gettrackers --help
 gettrackers is a CLI tool that downloads tracker URLs from configurable sources, filters them using a blocklist, and outputs them grouped by domain.
 
