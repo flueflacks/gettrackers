@@ -3,18 +3,33 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"runtime/debug"
 
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "gettrackers",
-	Short: "Download, filter, and output tracker URLs grouped by domain",
-	Long:  `gettrackers is a CLI tool that downloads tracker URLs from configurable sources, filters them using a blocklist, and outputs them grouped by domain.`,
-	RunE:  runGroups,
+	Use:     "gettrackers",
+	Short:   "Download, filter, and output tracker URLs grouped by domain",
+	Long:    `gettrackers is a CLI tool that downloads tracker URLs from configurable sources, filters them using a blocklist, and outputs them grouped by domain.`,
+	RunE:    runGroups,
+	Version: getVersion(),
 }
 
 var outputFile string
+
+func getVersion() string {
+	info, ok := debug.ReadBuildInfo()
+	if !ok {
+		return "unknown"
+	}
+
+	v := info.Main.Version
+	if v == "" {
+		return "(unknown)"
+	}
+	return v
+}
 
 func init() {
 	rootCmd.PersistentFlags().StringVarP(&outputFile, "output", "o", "", "Write output to file instead of stdout")
@@ -37,4 +52,3 @@ func getOutputWriter() (*os.File, error) {
 	}
 	return os.Stdout, nil
 }
-
