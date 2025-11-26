@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"gettrackers/internal/paths"
+	"github.com/flueflacks/gettrackers/internal/paths"
 )
 
 // LoadBlocklist loads blocklist patterns from file

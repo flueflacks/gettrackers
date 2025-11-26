@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"gettrackers/cmd"
+	"github.com/flueflacks/gettrackers/cmd"
 )
 
 func main() {

@@ -8,6 +8,12 @@ other compatible clients.
 
 such as [ngosang's trackerslist](https://github.com/ngosang/trackerslist) 
 
+## install
+
+```
+go install github.com/flueflacks/gettrackers@latest
+```
+
 ## Usage
 
 ```

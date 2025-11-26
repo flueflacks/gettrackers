@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"gettrackers/internal/paths"
+	"github.com/flueflacks/gettrackers/internal/paths"
 )
 
 const cacheMaxAge = 24 * time.Hour

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"gettrackers/internal/paths"
+	"github.com/flueflacks/gettrackers/internal/paths"
 	"gopkg.in/yaml.v3"
 )
 

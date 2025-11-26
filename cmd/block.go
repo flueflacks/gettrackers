@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"gettrackers/internal/filter"
+	"github.com/flueflacks/gettrackers/internal/filter"
 
 	"github.com/spf13/cobra"
 )

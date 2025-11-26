@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"gettrackers/internal/config"
+	"github.com/flueflacks/gettrackers/internal/config"
 
 	"github.com/spf13/cobra"
 )

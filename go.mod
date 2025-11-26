@@ -1,4 +1,4 @@
-module gettrackers
+module github.com/flueflacks/gettrackers
 
 go 1.21
 
